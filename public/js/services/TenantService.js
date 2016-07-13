@@ -20,7 +20,7 @@
     function getAll(){
       return $http.get('https://pure-bastion-92280.herokuapp.com/listings')
                   .then(function(response){
-                    o.todos = response.data;
+                    o.listings = response.data;
                   });
     }
     function updateListing(){}
