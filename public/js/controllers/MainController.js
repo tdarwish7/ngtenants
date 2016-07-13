@@ -15,5 +15,10 @@
                     listings = TenantService.listings;
                     console.log(listings);
                   });
+
+                  TenantService.update()
+
   }
+
+
 })();
