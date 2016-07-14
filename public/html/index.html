@@ -8,10 +8,35 @@
 </head>
 <body>
 
-  <div ng-controller='MainController'>
+  <div class='container' ng-controller='MainController'>
+    <div class="row">
+      <div class="col-md-8 col-lg-7 col-md-offset-1 col-lg-offset-1">
+        <div class="form-group">
+          <label>Location:</label>
+          <input type="text" class="form-control" ng-model='location'>
+          <label>House or Apartment</label>
+          <input type="text" class="form-control" ng-model='houseOrApt'>
+          <label>Number Of Rooms</label>
+          <input type="text" class="form-control" ng-model='numberOfRooms'>
+          <label>Number Of Bathrooms</label>
+          <input type="text" class="form-control" ng-model='numberOfBathrooms'>
+          <label>Type Of Lease</label>
+          <input type="text" class="form-control" ng-model='typeOfLease'>
+          <label>Pets Allowed?</label>
+          <input type="text" class="form-control" ng-model='arePetsAllowed'>
+        </div>
+      </div>
+      <div class="col-md-8 col-lg-7-col-md-offset-1 col-lg-offset-1">
+        <button class="btn btn-warning btn-block" ng-click='create(location, houseOrApt, numberOfRooms, numberOfBathrooms, numberOfRoommates, typeOfLease, arePetsAllowed)'>Create Listing</button>
+      </div>
+    </div>
+
+    <div class="row" ng-repeat='eachItem in listings'>
+      {{ eachItem.location }}
+
+    </div>
 
   </div>
-
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular.js"></script>

@@ -7,16 +7,30 @@
   MainController.$inject = ['$scope', 'TenantService'];
 
   function MainController($scope, TenantService){
-    $scope.message = 'blahblahblahblah';
+    $scope.listings = TenantService.listings;
+    $scope.create = createListing;
+    getListings();
 
-    var listings;
-    TenantService.readAll()
+    function getListings(){
+      TenantService.readAll()
                   .then(function(){
-                    listings = TenantService.listings;
-                    console.log(listings);
-                  });
-
-                  TenantService.update()
+                    $scope.listings = TenantService.listings;
+                    console.log($scope.listings);                    
+                  })
+    }
+    function createListing(location, houseOrApt, numberOfRooms, numberOfBathrooms, numberOfRoommates, typeOfLease, arePetsAllowed){
+      TenantService.create(location, houseOrApt, numberOfRooms, numberOfBathrooms, numberOfRoommates, typeOfLease, arePetsAllowed)
+                    .then(function(){
+                    $scope.location = '';
+                    $scope.houseOrApt = '';
+                    $scope.numberOfRooms = '';
+                    $scope.numberOfBathrooms = '';
+                    $scope.numberOfRoommates = '';
+                    $scope.typeOfLease = '';
+                    $scope.arePetsAllowed = '';
+                    getListings();
+                    })
+    }
 
   }
 

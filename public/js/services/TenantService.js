@@ -27,10 +27,8 @@
         typeOfLease: typeOfLease,
         arePetsAllowed: arePetsAllowed
       };
-      return $http.post.get(baseUrl+'listings',info)
+      return $http.post(baseUrl+'listings',info)
                         .then(function(response){
-                          console.log('create',response);
-
                           getAll();
                         });
     }
@@ -44,14 +42,12 @@
       return $http.put(baseUrl+'listings/'+id, newListing)
                   .then(function(response){
                     getAll();
-                    console.log('put', response);
                   });
     }
     function deleteListing(id){
       return $http.delete(baseUrl+'listings/'+id)
                   .then(function(response){
                     getAll();
-                    console.log('delete', response);
                   })
     }
   }
