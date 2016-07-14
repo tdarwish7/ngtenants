@@ -9,13 +9,14 @@
   function MainController($scope, TenantService){
     $scope.listings = TenantService.listings;
     $scope.create = createListing;
+    $scope.delete = deleteListings;
     getListings();
 
     function getListings(){
       TenantService.readAll()
                   .then(function(){
                     $scope.listings = TenantService.listings;
-                    console.log($scope.listings);                    
+                    console.log($scope.listings);
                   })
     }
     function createListing(location, houseOrApt, numberOfRooms, numberOfBathrooms, numberOfRoommates, typeOfLease, arePetsAllowed){
@@ -30,6 +31,14 @@
                     $scope.arePetsAllowed = '';
                     getListings();
                     })
+    }
+
+    function deleteListings(id){
+      console.log(id);
+      TenantService.delete(id)
+                    .then(function(){
+                      getListings();
+                    });
     }
 
   }

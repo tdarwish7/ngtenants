@@ -32,8 +32,16 @@
     </div>
 
     <div class="row" ng-repeat='eachItem in listings'>
-      {{ eachItem.location }}
+      <div class="jumbotron" data-id={{eachItem.id}}>
+        <button class="btn btn-sm btn-danger pull-right" ng-click='delete(eachItem.id)'>X</button>
+        <h3><strong>{{ eachItem.location }}</strong></h3>
+        <p><strong>House/Apt: </strong> {{ eachItem.houseOrApt}} </p>
+        <p><strong>Rooms: </stromg>{{ eachItem.numberOfRooms }} </p>
+        <p><strong>Bathrooms: </strong> {{ eachItem.numberOfBathrooms }}</p>
+        <p><strong>TypeOfLease: </strong>{{ eachItem.typeOfLease }}</p>
+        <p><strong>Pets Allowed? </strong>{{ eachItem.arePetsAllowed }} </p>
 
+      </div>
     </div>
 
   </div>
