@@ -2,15 +2,15 @@
 <html ng-app='ngtenants' lang="en">
 <head>
   <meta charset="UTF-8">
+  <title>ngtenants</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <link rel="stylesheet" href="css/main.css">
-  <title>Document</title>
 </head>
 <body>
 
   <div class='container' ng-controller='MainController'>
     <div class="row">
-      <div class="col-md-8 col-lg-7 col-md-offset-1 col-lg-offset-1">
+      <div class="col-md-8 col-lg-7 col-md-offset-1 col-lg-offset-2">
         <div class="form-group">
           <label>Location:</label>
           <input type="text" class="form-control" ng-model='location'>
@@ -26,20 +26,48 @@
           <input type="text" class="form-control" ng-model='arePetsAllowed'>
         </div>
       </div>
-      <div class="col-md-8 col-lg-7-col-md-offset-1 col-lg-offset-1">
+      <div class="col-md-6 col-lg-7 col-md-offset-2 col-lg-offset-2">
         <button class="btn btn-warning btn-block" ng-click='create(location, houseOrApt, numberOfRooms, numberOfBathrooms, numberOfRoommates, typeOfLease, arePetsAllowed)'>Create Listing</button>
       </div>
     </div>
 
-    <div class="row" ng-repeat='eachItem in listings'>
-      <div class="jumbotron" data-id={{eachItem.id}}>
-        <button class="btn btn-sm btn-danger pull-right" ng-click='delete(eachItem.id)'>X</button>
-        <h3><strong>{{ eachItem.location }}</strong></h3>
-        <p><strong>House/Apt: </strong> {{ eachItem.houseOrApt}} </p>
-        <p><strong>Rooms: </stromg>{{ eachItem.numberOfRooms }} </p>
-        <p><strong>Bathrooms: </strong> {{ eachItem.numberOfBathrooms }}</p>
-        <p><strong>TypeOfLease: </strong>{{ eachItem.typeOfLease }}</p>
-        <p><strong>Pets Allowed? </strong>{{ eachItem.arePetsAllowed }} </p>
+    <div class="row listings col-md-4" ng-repeat='eachItem in listings'>
+      <div class="  " ng-style="{ display: inline-block }" data-id={{eachItem.id}}>
+
+        <h3 ng-hide="eachItem.editing"><strong>{{ eachItem.location }}</strong></h3>
+          <div ng-show="eachItem.editing">
+            <input type="text" ng-model='eachItem.location' class="form-control">
+          </div>
+        <p ng-hide="eachItem.editing"><strong>House/Apt: </strong> {{ eachItem.houseOrApt}} </p>
+          <div ng-show="eachItem.editing">
+            <input type="text" ng-model='eachItem.houseOrApt' class="form-control">
+          </div>
+        <p ng-hide="eachItem.editing"><strong>Rooms: </strong>{{ eachItem.numberOfRooms }} </p>
+          <div ng-show="eachItem.editing">
+            <input type="text" ng-model='eachItem.numberOfRooms' class="form-control">
+          </div>
+        <p ng-hide="eachItem.editing"><strong>Bathrooms: </strong> {{ eachItem.numberOfBathrooms }}</p>
+          <div ng-show="eachItem.editing">
+            <input type="text" ng-model='eachItem.numberOfBathrooms' class="form-control">
+          </div>
+        <!-- <p ng-hide="eachItem.editing"><strong>Roommates: </strong>{{ eachItem.numberOfRoommates }}</p>
+          <div ng-show="eachItem.editing">
+            <input type="text" ng-model='eachItem.numberOfRoommates' class="form-control">
+          </div> -->
+        <p ng-hide="eachItem.editing"><strong>TypeOfLease: </strong>{{ eachItem.typeOfLease }}</p>
+          <div ng-show="eachItem.editing">
+            <input type="text" ng-model='eachItem.typeOfLease' class="form-control">
+          </div>
+        <p ng-hide="eachItem.editing"><strong>Pets Allowed? </strong>{{ eachItem.arePetsAllowed }} </p>
+          <div ng-show="eachItem.editing">
+            <input type="text" ng-model='eachItem.arePetsAllowed' class="form-control">
+          </div>
+        <button ng-click='edit(eachItem)' ng-hide='eachItem.editing' class="btn btn-default">Edit</button>
+        <button ng-click='update(eachItem)' ng-show='eachItem.editing' class="btn btn-warning">Update</button>
+        <button class="btn btn-sm btn-danger" ng-click='delete(eachItem.id)'>
+          <span class='glyphicon glyphicon-trash'></span>
+        </button>
+
 
       </div>
     </div>
